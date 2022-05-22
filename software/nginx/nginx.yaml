@@ -39,7 +39,7 @@ kind: Service
 apiVersion: v1
 metadata:
   labels:
-    k8s-app: app-web
+    app: app-web
   name: app-web
 spec:
   ports:
@@ -48,4 +48,4 @@ spec:
     - port: 443
       targetPort: 443
   selector:
-    k8s-app: app-web
+    app: app-web
