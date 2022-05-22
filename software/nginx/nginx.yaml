@@ -22,7 +22,15 @@ spec:
         name: nginx
         # pull policy; IfNotPresent(default) Always Never
         imagePullPolicy: Always
-        resources: {}
+        # restart policy; Always(default) OnFailure Never
+        restartPolicy: Always
+        resources: 
+          request: 
+            memory: "64Mi"
+            cpu: "1000m"
+          limit:
+            memory: "128Mi"
+            cpu: "2000m"
 status: {}
 
 ---
