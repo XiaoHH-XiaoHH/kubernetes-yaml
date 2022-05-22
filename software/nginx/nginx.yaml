@@ -35,17 +35,19 @@ status: {}
 
 ---
 
-kind: Service
 apiVersion: v1
+kind: Service
 metadata:
+  creationTimestamp: null
   labels:
     app: app-web
   name: app-web
 spec:
   ports:
-    - port: 80
-      targetPort: 80
-    - port: 443
-      targetPort: 443
+  - port: 80
+    protocol: TCP
+    targetPort: 80
   selector:
     app: app-web
+status:
+  loadBalancer: {}
