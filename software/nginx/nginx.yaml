@@ -1,0 +1,43 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  creationTimestamp: null
+  labels:
+    app: app-web
+  name: app-web
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: app-web
+  strategy: {}
+  template:
+    metadata:
+      creationTimestamp: null
+      labels:
+        app: app-web
+    spec:
+      containers:
+      - image: nginx:1.21.6
+        name: nginx
+        # pull policy; IfNotPresent(default) Always Never
+        imagePullPolicy: Always
+        resources: {}
+status: {}
+
+---
+
+kind: Service
+apiVersion: v1
+metadata:
+  labels:
+    k8s-app: app-web
+  name: app-web
+spec:
+  ports:
+    - port: 80
+      targetPort: 80
+    - port: 443
+      targetPort: 443
+  selector:
+    k8s-app: app-web
