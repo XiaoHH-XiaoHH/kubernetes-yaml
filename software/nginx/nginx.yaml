@@ -20,12 +20,15 @@ spec:
       containers:
       - image: nginx:1.21.6
         name: nginx
+        ports:
+        - containerPort: 80
+          protocol: TCP
         # pull policy; IfNotPresent(default) Always Never
         imagePullPolicy: Always
         # restart policy; Always(default) OnFailure Never
         restartPolicy: Always
         resources: 
-          request: 
+          required: 
             memory: "64Mi"
             cpu: "1000m"
           limit:
@@ -38,6 +41,7 @@ status: {}
 apiVersion: v1
 kind: Service
 metadata:
+  type: ClusterId
   creationTimestamp: null
   labels:
     app: app-web
